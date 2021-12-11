@@ -5,23 +5,24 @@ import com.rms.model.factory.AsianCuisineFactoryI;
 import com.rms.model.factory.IAbstractMealFactory;
 import com.rms.model.factory.IndianCusineFactoryI;
 import com.rms.model.factory.TurkishCuisineFactoryI;
-import com.rms.model.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class OrderService {
+    private IAbstractMealFactory abstractMealFactory;
+    /*
     private @Autowired
     OrderRepository orderRepository;
 
-    private IAbstractMealFactory abstractMealFactory;
-
+    @Transactional
     public List<Order> listOrders() {
         return orderRepository.findAll();
     }
-
+    */
     public void placeOrderByCuisine(String type) {
         if (type == "Turkish") {
             abstractMealFactory = new TurkishCuisineFactoryI();
