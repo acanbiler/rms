@@ -1,13 +1,11 @@
 package com.rms.service;
 
-import com.rms.model.repository.UserRepository;
-import com.rms.model.dto.UserDTO;
 import com.rms.model.entity.User;
+import com.rms.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,33 +13,12 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-/*
-    public UserDTO getUserByName(String name) {
-        UserDTO userDTO = new UserDTO();
 
-        User user = userRepository.findByName(name);
-
-        userDTO.setName(user.getName());
-        userDTO.setRole(user.getRole());
-        userDTO.setPassword(user.getPassword());
-
-        return userDTO;
+    public boolean isUserAuthorized(String name, String password) {
+        return userRepository.findByNameAndPassword(name, password);
     }
-*/
-    public List<UserDTO> getUserList() {
-        List<UserDTO> userDTOList = new ArrayList<>();
-        List<User> userList = userRepository.findAll();
 
-        for (User user : userList) {
-            UserDTO userDTO = new UserDTO();
-
-            userDTO.setName(user.getName());
-            userDTO.setRole(user.getRole());
-            userDTO.setPassword(user.getPassword());
-
-            userDTOList.add(userDTO);
-        }
-
-        return userDTOList;
+    public List<User> getUserList() {
+        return userRepository.findAll();
     }
 }
