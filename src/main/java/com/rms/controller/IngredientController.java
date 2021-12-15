@@ -13,12 +13,12 @@ public class IngredientController {
     private @Autowired
     IngredientService ingredientService;
 
-    @GetMapping(name = "/list")
+    @GetMapping(value = "/list")
     public List<Ingredient> listIngredients() {
         return ingredientService.listIngredients();
     }
 
-    @PostMapping(name = "/add")
+    @PostMapping(value = "/add")
     public void addIngredient(@RequestBody Ingredient ingredient) {
         ingredientService.addIngredient(ingredient);
     }
