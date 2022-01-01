@@ -5,4 +5,9 @@ public class Lahmacun implements Meal {
     public String getCuisine() {
         return "Turkish";
     }
+
+    @Override
+    public Integer getCost() {
+        return 20;
+    }
 }

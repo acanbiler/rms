@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface Meal {
     public String getCuisine();
+    public Integer getCost();
     public List<Ingredient> ingredientList = new ArrayList<>();
 }

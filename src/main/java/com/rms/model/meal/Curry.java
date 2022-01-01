@@ -5,4 +5,9 @@ public class Curry implements Meal {
     public String getCuisine() {
         return "Indian";
     }
+
+    @Override
+    public Integer getCost() {
+        return 50;
+    }
 }

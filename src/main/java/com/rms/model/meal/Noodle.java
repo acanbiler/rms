@@ -5,4 +5,9 @@ public class Noodle implements Meal{
     public String getCuisine() {
         return "Asian";
     }
+
+    @Override
+    public Integer getCost() {
+        return 45;
+    }
 }
