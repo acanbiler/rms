@@ -5,7 +5,7 @@ import com.rms.model.meal.Meal;
 
 import java.util.List;
 
-public interface IAbstractMealFactory {
+public interface AbstractMealFactory {
     List<Meal> cookMeal();
     Beverage prepareBeverage();
 }

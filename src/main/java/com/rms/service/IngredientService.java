@@ -20,8 +20,21 @@ public class IngredientService {
         ingredientRepository.save(ingredient);
     }
 
-    public void deleteIngredient(Long id) {
-        ingredientRepository.deleteById(id);
+    public boolean consumeIngredient(String name, Integer quantity) {
+        Ingredient ingredient = ingredientRepository.findByName(name);
+
+        if (ingredient != null) {
+            Integer currentQuantity = ingredient.getQuantity();
+
+            if (quantity < currentQuantity) {
+                ingredient.setQuantity(quantity);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return false;
     }
 
 }

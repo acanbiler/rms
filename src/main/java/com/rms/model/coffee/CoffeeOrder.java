@@ -3,7 +3,7 @@ package com.rms.model.coffee;
 import lombok.Data;
 
 @Data
-public class CoffeeRequest {
+public class CoffeeOrder {
     private Boolean mocha;
     private Boolean whip;
     private Boolean milk;

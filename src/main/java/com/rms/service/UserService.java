@@ -14,8 +14,21 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean isUserAuthorized(String name, String password) {
-        return userRepository.findByNameAndPassword(name, password);
+    public String isUserAuthorized(String name, String password) {
+        User user = userRepository.findByNameAndPassword(name, password);
+
+        if (user != null) {
+            switch (user.getRole()){
+                case 1:
+                    return "manager";
+                case 2:
+                    return "cook";
+                case 3:
+                    return "server";
+            }
+        }
+
+        return "";
     }
 
     public List<User> getUserList() {

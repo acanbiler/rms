@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/{name}/{password}")
-    public boolean isUserAuthorized(@PathVariable String name, @PathVariable String password) {
+    public String isUserAuthorized(@PathVariable String name, @PathVariable String password) {
         return userService.isUserAuthorized(name, password);
     }
 

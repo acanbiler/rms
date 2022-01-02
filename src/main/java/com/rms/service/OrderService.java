@@ -1,19 +1,14 @@
 package com.rms.service;
 
-import com.rms.model.entity.Order;
-import com.rms.model.factory.AsianCuisineFactoryI;
-import com.rms.model.factory.IAbstractMealFactory;
-import com.rms.model.factory.IndianCusineFactoryI;
-import com.rms.model.factory.TurkishCuisineFactoryI;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.rms.model.factory.AsianCuisineFactory;
+import com.rms.model.factory.AbstractMealFactory;
+import com.rms.model.factory.IndianCusineFactory;
+import com.rms.model.factory.TurkishCuisineFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class OrderService {
-    private IAbstractMealFactory abstractMealFactory;
+    private AbstractMealFactory abstractMealFactory;
     /*
     private @Autowired
     OrderRepository orderRepository;
@@ -25,19 +20,20 @@ public class OrderService {
     */
     public void placeOrderByCuisine(String type) {
         if (type == "Turkish") {
-            abstractMealFactory = new TurkishCuisineFactoryI();
-            abstractMealFactory.cookMeal();
-            abstractMealFactory.prepareBeverage();
+            abstractMealFactory = new TurkishCuisineFactory();
         }
         if (type == "Asian") {
-            abstractMealFactory = new AsianCuisineFactoryI();
-            abstractMealFactory.cookMeal();
-            abstractMealFactory.prepareBeverage();
+            abstractMealFactory = new AsianCuisineFactory();
         }
         if (type == "Indian") {
-            abstractMealFactory = new IndianCusineFactoryI();
-            abstractMealFactory.cookMeal();
-            abstractMealFactory.prepareBeverage();
+            abstractMealFactory = new IndianCusineFactory();
         }
+
+        prepareMealByCuisine(abstractMealFactory);
+    }
+
+    public void prepareMealByCuisine(AbstractMealFactory abstractMealFactory) {
+        abstractMealFactory.cookMeal();
+        abstractMealFactory.prepareBeverage();
     }
 }

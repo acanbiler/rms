@@ -14,5 +14,5 @@ public class Ingredient implements Serializable {
     private long id;
 
     private String name;
-    private Integer count;
+    private Integer quantity;
 }

@@ -1,25 +1,25 @@
 package com.rms.model.factory;
 
-import com.rms.model.beverage.Ayran;
 import com.rms.model.beverage.Beverage;
-import com.rms.model.meal.Kebab;
-import com.rms.model.meal.Lahmacun;
+import com.rms.model.beverage.Chai;
+import com.rms.model.meal.Curry;
 import com.rms.model.meal.Meal;
+import com.rms.model.meal.Naan;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TurkishCuisineFactoryI implements IAbstractMealFactory {
+public class IndianCusineFactory implements AbstractMealFactory {
     @Override
     public Beverage prepareBeverage() {
-        return new Ayran();
+        return new Chai();
     }
 
     @Override
     public List<Meal> cookMeal() {
         List<Meal> mealList = new ArrayList<>();
-        mealList.add(new Kebab());
-        mealList.add(new Lahmacun());
+        mealList.add(new Naan());
+        mealList.add(new Curry());
 
         return mealList;
     }

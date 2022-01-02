@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PizzaRequest {
+public class PizzaOrder {
     private Integer size;
     private Boolean cheese;
     private Boolean pepperoni;
