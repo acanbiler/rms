@@ -22,12 +22,13 @@ public class OrderService {
 
     @Transactional
     public List<Order> listOrders() {
-        return orderRepository.findAll();
+        List<Order> orderList = orderRepository.findAll();
+        return orderList;
     }
 
     public void placeOrder(List<Order> orderList){
         for (Order ord: orderList){
-            ord.setState(new OrderedState(ord));
+            ord.setState(new OrderedState(ord, orderRepository));
         }
     }
 

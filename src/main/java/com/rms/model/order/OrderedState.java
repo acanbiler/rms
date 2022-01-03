@@ -8,10 +8,8 @@ import java.util.List;
 public class OrderedState implements OrderState {
 
     private final Integer status=1;
-    private @Autowired
-    OrderRepository orderRepository;
 
-    public OrderedState(Order order) {
+    public OrderedState(Order order, OrderRepository orderRepository) {
         order.setStatus(this.status);
         orderRepository.save(order);
     }

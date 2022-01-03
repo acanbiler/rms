@@ -13,12 +13,17 @@ public class OrderController {
     private @Autowired
     OrderService orderService;
 
-    @GetMapping(name = "/cuisine/{cuisine}")
+    @GetMapping(value = "/cuisine/{cuisine}")
     public void placeOrderByCuisine(@PathVariable String cuisine) {
         orderService.placeOrderByCuisine(cuisine);
     }
 
-    @PostMapping(name = "/place")
+    @GetMapping(value = "/list")
+    public List<Order> listOrders() {
+        return orderService.listOrders();
+    }
+
+    @PostMapping(value = "/place")
     public void placeOrder(@RequestBody List<Order> orderList) {
         orderService.placeOrder(orderList);
     }

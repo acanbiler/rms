@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
@@ -20,12 +17,18 @@ import java.util.List;
 public class Order {
     @Id
     private long id;
+
+    @Column(name = "orderid")
     private Integer orderId;
+
+    @Column(name = "ordereditem")
     private String orderedItem;
+
+    @Column(name = "status")
     private Integer status;
 
     @Transient
-    private OrderState state = new OrderedState(this);
+    private OrderState state;
 
 
     public void previousState() {

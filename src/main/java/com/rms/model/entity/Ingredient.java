@@ -14,5 +14,7 @@ public class Ingredient implements Serializable {
     private long id;
 
     private String name;
+
+    @Column(name = "count")
     private Integer quantity;
 }
