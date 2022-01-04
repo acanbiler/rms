@@ -22,4 +22,15 @@ public class IngredientController {
     public void addIngredient(@RequestBody Ingredient ingredient) {
         ingredientService.addIngredient(ingredient);
     }
+
+    @PostMapping(value = "/increase")
+    public void increaseIngredient(@RequestBody Ingredient ingredient) {
+        ingredientService.increaseIngredient(ingredient);
+    }
+
+    @PostMapping(value = "/consume")
+    public void consumeIngredient(@RequestBody Ingredient ingredient) {
+        ingredientService.consumeIngredient(ingredient);
+    }
+
 }

@@ -1,10 +1,12 @@
 package com.rms.model.order;
 
 import com.rms.model.repository.OrderRepository;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+@NoArgsConstructor
 public class OrderedState implements OrderState {
 
     private final Integer status=1;

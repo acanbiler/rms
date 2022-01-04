@@ -1,23 +1,17 @@
 package com.rms.model.order;
 
 import com.rms.model.repository.OrderRepository;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+@NoArgsConstructor
 public class ServedState implements OrderState {
-
     private final Integer status=3;
-    private @Autowired
-    OrderRepository orderRepository;
 
     public ServedState(Order order) {
-        List<Order> persistentOrderList = orderRepository.findByOrderId(order.getOrderId());
-
-        for(Order ord: persistentOrderList ){
-            ord.setStatus(this.status);
-
-        }
+        order.setStatus(this.status);
     }
 
     @Override

@@ -16,19 +16,25 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
+    public void increaseIngredient(Ingredient ingredient) {
+        Ingredient persistentIngredient = ingredientRepository.findByName(ingredient.getName());
+        persistentIngredient.setQuantity(persistentIngredient.getQuantity() + 10);
+        ingredientRepository.save(persistentIngredient);
+    }
+
     public void addIngredient(Ingredient ingredient) {
-        ingredientRepository.findByName(ingredient.getName());
         ingredientRepository.save(ingredient);
     }
 
-    public boolean consumeIngredient(String name, Integer quantity) {
-        Ingredient ingredient = ingredientRepository.findByName(name);
+    public boolean consumeIngredient(Ingredient ingredient) {
+        Ingredient persistenIngredient = ingredientRepository.findByName(ingredient.getName());
 
-        if (ingredient != null) {
-            Integer currentQuantity = ingredient.getQuantity();
+        if (persistenIngredient != null) {
+            Integer currentQuantity = persistenIngredient.getQuantity();
 
-            if (quantity < currentQuantity) {
-                ingredient.setQuantity(quantity);
+            if (ingredient.getQuantity() < currentQuantity) {
+                persistenIngredient.setQuantity(currentQuantity - ingredient.getQuantity());
+                ingredientRepository.save(persistenIngredient);
                 return true;
             } else {
                 return false;

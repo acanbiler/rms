@@ -31,7 +31,7 @@ public class Sahlep implements Beverage {
     }
 
     @Override
-    public String getType() {
-        return  "Sahlep served.";
+    public String getName() {
+        return  "Sahlep";
     }
 }

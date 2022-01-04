@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "Order", schema = "public")
 public class Order {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "orderid")
@@ -31,11 +32,13 @@ public class Order {
     private OrderState state;
 
 
-    public void previousState() {
+    public void previousState(OrderState state) {
+        this.state = state;
         state.prev(this);
     }
 
-    public void nextState() {
+    public void nextState(OrderState state) {
+        this.state = state;
         state.next(this);
     }
 

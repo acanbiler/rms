@@ -12,8 +12,9 @@ import java.io.Serializable;
 @Table(name = "user", schema = "public")
 public class User implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;

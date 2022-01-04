@@ -26,7 +26,7 @@ public class Tea implements Beverage {
     }
 
     @Override
-    public String getType() {
-        return "Tea served.";
+    public String getName() {
+        return "Tea";
     }
 }

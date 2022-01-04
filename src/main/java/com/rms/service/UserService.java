@@ -38,4 +38,10 @@ public class UserService {
     public void addUser(User user) {
         userRepository.save(user);
     }
+
+    public void deleteUser(Integer userId) {
+        User user = new User();
+        user.setId(userId);
+        userRepository.delete(user);
+    }
 }

@@ -2,8 +2,8 @@ package com.rms.model.beverage;
 
 public class HotChocolate implements Beverage{
     @Override
-    public String getType() {
-        return "HotChocolate served.";
+    public String getName() {
+        return "HotChocolate";
     }
 
     void prepareRecipe() {
