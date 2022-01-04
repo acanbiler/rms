@@ -5,12 +5,17 @@ import com.rms.model.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class IngredientService {
+public class IngredientService implements PropertyChangeListener {
     private @Autowired
     IngredientRepository ingredientRepository;
+
+    private List<Ingredient> ingredientsNeedReplacement = new ArrayList<>();
 
     public List<Ingredient> listIngredients() {
         return ingredientRepository.findAll();
@@ -44,4 +49,8 @@ public class IngredientService {
         return false;
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        ingredientsNeedReplacement.add((Ingredient) evt.getNewValue());
+    }
 }

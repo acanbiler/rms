@@ -9,14 +9,15 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderedState implements OrderState {
 
-    private final Integer status=1;
-
     public OrderedState(Order order, OrderRepository orderRepository) {
-        order.setStatus(this.status);
+        Integer status = 1;
+        order.setStatus(status);
         orderRepository.save(order);
     }
 
-    public OrderedState(ReadyState readyState) {
+    public OrderedState(Order order) {
+        Integer status = 1;
+        order.setStatus(status);
     }
 
     @Override

@@ -9,12 +9,9 @@ import java.util.List;
 @NoArgsConstructor
 public class ReadyState implements OrderState {
 
-    private final Integer status=2;
-    private @Autowired
-    OrderRepository orderRepository;
-
     public ReadyState(Order order) {
-        order.setStatus(this.status);
+        Integer status = 2;
+        order.setStatus(status);
     }
 
     @Override
@@ -25,7 +22,7 @@ public class ReadyState implements OrderState {
 
     @Override
     public String prev(Order ord) {
-        ord.setState(new OrderedState(this));
+        ord.setState(new OrderedState(ord));
         return "successful";
     }
 

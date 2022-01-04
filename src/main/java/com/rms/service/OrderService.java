@@ -97,13 +97,13 @@ public class OrderService {
             Order order = new Order();
             order.setOrderId(orderId);
             order.setOrderedItem(meal.getName());
-            order.setState(new OrderedState());
+            order.setState(new OrderedState(order, orderRepository));
         }
 
         Order beverageOrder = new Order();
         beverageOrder.setOrderId(orderId);
         beverageOrder.setOrderedItem(beverage.getName());
-        beverageOrder.setState(new OrderedState());
+        beverageOrder.setState(new OrderedState(beverageOrder, orderRepository));
     }
 
     public Pizza bakePizza(PizzaOrder pizzaOrder) {

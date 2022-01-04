@@ -8,10 +8,10 @@ import java.util.List;
 
 @NoArgsConstructor
 public class ServedState implements OrderState {
-    private final Integer status=3;
 
     public ServedState(Order order) {
-        order.setStatus(this.status);
+        Integer status = 3;
+        order.setStatus(status);
     }
 
     @Override
