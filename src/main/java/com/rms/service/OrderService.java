@@ -1,6 +1,10 @@
 package com.rms.service;
 
 import com.rms.model.beverage.Beverage;
+import com.rms.model.beverage.HotChocolate;
+import com.rms.model.beverage.Sahlep;
+import com.rms.model.beverage.Tea;
+import com.rms.model.coffee.*;
 import com.rms.model.factory.AsianCuisineFactory;
 import com.rms.model.factory.AbstractMealFactory;
 import com.rms.model.factory.IndianCusineFactory;
@@ -43,8 +47,11 @@ public class OrderService {
         order.setState(new OrderedState(order, orderRepository));
     }
 
-    public void advanceOrder(Integer orderId){
+    public boolean advanceOrder(Integer orderId){
         List<Order> persistentOrderList = orderRepository.findByOrderId(orderId);
+
+        if (persistentOrderList.isEmpty() || persistentOrderList.get(0).getStatus() == 3)
+            return false;
 
         for(Order order : persistentOrderList) {
             switch (order.getStatus()) {
@@ -57,10 +64,15 @@ public class OrderService {
             }
         }
         orderRepository.saveAll(persistentOrderList);
+
+        return true;
     }
 
-    public void revertOrder(Integer orderId){
+    public boolean revertOrder(Integer orderId){
         List<Order> persistentOrderList = orderRepository.findByOrderId(orderId);
+
+        if (persistentOrderList.isEmpty() || persistentOrderList.get(0).getStatus() == 1)
+            return false;
 
         for(Order order : persistentOrderList) {
             switch (order.getStatus()) {
@@ -73,6 +85,8 @@ public class OrderService {
             }
         }
         orderRepository.saveAll(persistentOrderList);
+
+        return true;
     }
 
     public void placeOrderByCuisine(Order order) {
@@ -116,5 +130,39 @@ public class OrderService {
             newPizza.pepperoni(true);
 
         return newPizza.build();
+    }
+
+    public String prepareBaverage(String baverage) {
+        String resp = "";
+        switch (baverage) {
+            case "tea":
+                Tea tea = new Tea();
+                tea.prepareRecipe("water");
+                resp = tea.getMessage();
+                break;
+            case "sahlep":
+                Sahlep sahlep = new Sahlep();
+                sahlep.prepareRecipe("milk");
+                resp = sahlep.getMessage();
+                break;
+            case "hotchocolate":
+                HotChocolate hotChocolate = new HotChocolate();
+                hotChocolate.prepareRecipe("milk");
+                resp = hotChocolate.getMessage();
+                break;
+        }
+        return resp;
+    }
+
+    public String prepareCoffee(CoffeeOrder coffeeOrder) {
+        Coffee espresso = new Espresso("Espresso", 12.0);
+        if (coffeeOrder.getMilk())
+            espresso = new Milk(espresso);
+        if (coffeeOrder.getMocha())
+            espresso = new Mocha(espresso);
+        if (coffeeOrder.getWhip())
+            espresso = new Whip(espresso);
+
+        return espresso.description();
     }
 }

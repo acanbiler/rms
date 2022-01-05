@@ -1,32 +1,21 @@
 package com.rms.model.beverage;
 
-public class HotChocolate implements Beverage{
+public class HotChocolate extends BaverageTemplate{
+    private String message;
+
     @Override
-    public String getName() {
-        return "HotChocolate";
+    void brew() {
+        message = super.message;
+        message += "\nAdd HotChocolate core";
     }
 
-    void prepareRecipe() {
-        boilMilk();
-        brewHotChocolateGrinds();
-        pourInCup();
-        addSugar();
+    @Override
+    void addCondiments() {
+        message += super.message;
+        message += "\nAdding Sugar";
     }
 
-    public void boilMilk() {
-        System.out.println("Boiling water and milk");
+    public String getMessage() {
+        return message;
     }
-
-    public void brewHotChocolateGrinds() {
-        System.out.println("Add HotChocolate core");
-    }
-
-    public void pourInCup() {
-        System.out.println("Pouring into cup");
-    }
-
-    public void addSugar() {
-        System.out.println("Adding Sugar");
-    }
-
 }
